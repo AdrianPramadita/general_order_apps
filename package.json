@@ -25,6 +25,8 @@
     "knex-filter": "^1.0.2",
     "knex-migrate": "^1.7.4",
     "knex-paginate": "^3.0.2",
+    "moment": "^2.29.4",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "promise": "^8.3.0",
