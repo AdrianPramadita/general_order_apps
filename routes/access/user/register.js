@@ -70,7 +70,7 @@ module.exports = async function (req, res) {
       organization: request.organization,
       address: request.address,
       created_at: new Date(),
-      created_by: dataToken.user_id,
+      // created_by: dataToken.id,
     };
     
     /** Query insert user */
