@@ -8,7 +8,7 @@ const userMenu = require('./user')
 // const roleMenu = require('../security/role-management')
 
 //USER MENU
-// router.post('/user/all', userMenu.all)
+router.post('/user/all', userMenu.all)
 router.post('/user', userMenu.register);
 // router.get('/user/:id', userMenu.edit)
 // router.put('/user/:id', userMenu.update)

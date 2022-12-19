@@ -8,7 +8,7 @@ attachPaginate();
 module.exports = async function (req, res) {
   try {
     /** data authentikasi user */
-    const dataToken = req.user;
+    // const dataToken = req.user;
     const request = req.body;
 
     /** validate users input */
@@ -16,8 +16,8 @@ module.exports = async function (req, res) {
       perPage: { type: "number", empty: false },
       currentPage: { type: "number", empty: false },
       nama: { type: "string", optional: true },
-      status: { type: "string", optional: true },
-      role_id: { type: "number", optional: true }
+      // status: { type: "string", optional: true },
+      // role_id: { type: "number", optional: true }
     };
     const validate = v.validate(request, schema);
     if(validate.length){
