@@ -48,11 +48,11 @@ module.exports = async function (req, res) {
     }
 
     /** Saved image to local storage */
-    var images = iExist.image;
-    if(request.image){
+    // var images = iExist.image;
+    // if(request.image){
       /** Saved Image to Local storage */
-      images = imageBase64.imgSync( request.image, "./public/images/users", Date.now() );
-    }
+    //   images = imageBase64.imgSync( request.image, "./public/images/users", Date.now() );
+    // }
 
     /** Saved new password is exist */
     var password = iExist.password;
@@ -61,11 +61,30 @@ module.exports = async function (req, res) {
       password = await bcrypt.hash(request.password, 10);
     }
 
+    /** Saved Image to Local storage */
+    var images = "";
+    if (request.image != null && request.image != "") {
+      var img = imageBase64.imgSync(
+        request.image,
+        "./public/images/users",
+        Date.now()
+      );
+
+      images = `images/users/${img
+        .split("\\")
+        .pop()
+        .split("/")
+        .pop()}`;
+    } else {
+      images = request.image;
+    }
+
     const data = {
       nama: request.nama,
       email: request.email,
       password: password,
-      image: `images/users/${images.split("\\").pop().split("/").pop()}`,
+      image: images,
+      // `images/users/${images.split("\\").pop().split("/").pop()}`,
       role_access: request.role_id,
       status: request.status,
       job_title: request.job_title,
@@ -73,7 +92,7 @@ module.exports = async function (req, res) {
       organization: request.organization,
       address: request.address,
       updated_at: new Date(),
-      updated_by: dataToken.user_id,
+      // updated_by: dataToken.user_id,
     };
 
     /** Query data user */
@@ -87,6 +106,7 @@ module.exports = async function (req, res) {
       message: "data successfully saved",
     });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ status: "error", message: error });
   }
 };

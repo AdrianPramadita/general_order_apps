@@ -27,14 +27,15 @@ module.exports = async function (req, res) {
     //   ":" +
     //   actv.getSeconds();
 
-    const data =
-      // {
-
-      // deleted_at: new Date(),
+    const data = await knex("users")
+    .where("id", id)
+    .update({
+      deleted_at: new Date(),
       // deleted_by: request.id,
-      // };
+    });
+     
 
-      await knex("users").where("id", id).del();
+      
 
     return res.status(200).json({
       status: "success",
@@ -42,6 +43,7 @@ module.exports = async function (req, res) {
       message: "data successfully deleted",
     });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ status: "error", message: error });
   }
 };

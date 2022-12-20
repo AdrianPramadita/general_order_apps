@@ -9,11 +9,12 @@ module.exports = async function (req, res) {
 
     /** Query get data role include pagination and filter */
     const data = await knex
-    .select("users.*", "role_management.role_name", knex.raw(`'${IMAGE_HOST}' || \'/\' || users.image as image`))
+    .select("users.*", knex.raw(`'${IMAGE_HOST}' || \'/\' || users.image as image`))
+    // "role_management.role_name",
     .from("users")
-    .leftJoin("role_management", "users.role_access", "=", "role_management.id")
-    .whereNull("users.deleted_at")
-    .where("users.id", id)
+    // .leftJoin("role_management", "users.role_access", "=", "role_management.id")
+    .whereNull("deleted_at")
+    .where("id", id)
     .first();
 
     return res.status(200).json({
