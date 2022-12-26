@@ -24,8 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
   // app.use(cors(corsOptions));
 
 /** Import modul aplikasi sistem sesuai folder */
-// const authRoute = require("./routes/authentikasi/index");
-
+const authRoute = require("./routes/authentication/index");
 const accessAdmin = require("./routes/access/index");
 
 //
@@ -43,7 +42,7 @@ const accessAdmin = require("./routes/access/index");
 
 // nama route yang diinginkan
 app.use("/", indexRouter);
-// app.use("/authentication", authRoute);
+app.use("/authentication", authRoute);
 
 app.use("/access", accessAdmin);
 
